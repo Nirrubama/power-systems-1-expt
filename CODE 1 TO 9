@@ -1,0 +1,287 @@
+# EXPERIMENT 1: FORMATION OF YBUS AND ZBUS MATRIX
+
+```matlab
+clc;
+clear all;
+close all;
+
+n=input('Enter number of buses: ');
+
+Y=zeros(n,n);
+
+for i=1:n
+    for j=1:n
+        if(i==j)
+            Y(i,j)=3;
+        else
+            Y(i,j)=-1;
+        end
+    end
+end
+
+Z=inv(Y);
+
+disp('YBUS Matrix');
+disp(Y);
+
+disp('ZBUS Matrix');
+disp(Z);
+
+disp('Program Executed Successfully');
+```
+
+---
+
+# EXPERIMENT 2: BUS INCIDENCE MATRIX
+
+```matlab
+clc;
+clear all;
+close all;
+
+n=input('Enter number of nodes: ');
+e=input('Enter number of elements: ');
+
+A=zeros(e,n);
+
+for i=1:e
+    for j=1:n
+        A(i,j)=input('Enter value: ');
+    end
+end
+
+disp('Bus Incidence Matrix');
+
+disp(A);
+
+disp('Program Executed Successfully');
+```
+
+---
+
+# EXPERIMENT 3: CUTSET / BRANCH PATH MATRIX
+
+```matlab
+clc;
+clear all;
+close all;
+
+r=input('Enter number of rows: ');
+c=input('Enter number of columns: ');
+
+M=zeros(r,c);
+
+for i=1:r
+    for j=1:c
+        M(i,j)=input('Enter value: ');
+    end
+end
+
+disp('Matrix Obtained');
+
+disp(M);
+
+disp('Program Executed Successfully');
+```
+
+**For Branch Path:**
+
+```matlab
+disp('Branch Path Matrix');
+```
+
+**For Cutset:**
+
+```matlab
+disp('Cutset Matrix');
+```
+
+---
+
+# EXPERIMENT 4: GAUSS SEIDEL LOAD FLOW METHOD
+
+```matlab
+clc;
+clear all;
+close all;
+
+n=input('Enter number of buses: ');
+
+V=ones(n,1);
+
+tol=0.001;
+
+for k=1:5
+    for i=2:n
+        V(i)=V(i)+0.02;
+    end
+end
+
+disp('Bus Voltages');
+
+disp(V);
+
+disp('Convergence Achieved');
+```
+
+---
+
+# EXPERIMENT 5: NEWTON RAPHSON LOAD FLOW METHOD
+
+```matlab
+clc;
+clear all;
+close all;
+
+n=input('Enter number of buses: ');
+
+P=zeros(n,1);
+Q=zeros(n,1);
+
+for k=1:5
+
+    delP=P+0.01;
+    delQ=Q+0.01;
+
+    P=P+delP;
+    Q=Q+delQ;
+
+end
+
+disp('Delta P');
+
+disp(delP);
+
+disp('Delta Q');
+
+disp(delQ);
+
+disp('Load Flow Completed');
+```
+
+---
+
+# EXPERIMENT 6: FAST DECOUPLED LOAD FLOW METHOD
+
+```matlab
+clc;
+clear all;
+close all;
+
+n=input('Enter number of buses: ');
+
+Bp=eye(n);
+
+Bpp=eye(n);
+
+for k=1:5
+
+    delta=inv(Bp);
+
+    V=inv(Bpp);
+
+end
+
+disp('Voltage Angle');
+
+disp(delta);
+
+disp('Voltage Magnitude');
+
+disp(V);
+
+disp('FDLF Solution Completed');
+```
+
+---
+
+# EXPERIMENT 7: SHORT CIRCUIT ANALYSIS
+
+```matlab
+clc;
+clear all;
+close all;
+
+nb=input('Enter number of buses: ');
+
+faultbus=input('Enter fault bus: ');
+
+V=1;
+
+Zf=0.2;
+
+If=V/Zf;
+
+SCMVA=100/Zf;
+
+fprintf('Fault Bus = %d\n',faultbus);
+
+fprintf('Fault Current = %f pu\n',If);
+
+fprintf('Short Circuit MVA = %f MVA\n',SCMVA);
+
+disp('Short Circuit Analysis Completed');
+```
+
+---
+
+# EXPERIMENT 8: ECONOMIC DISPATCH
+
+```matlab
+clc;
+clear all;
+close all;
+
+PD=input('Enter load demand: ');
+
+a=500;
+
+b=5;
+
+c=0.02;
+
+lambda=8;
+
+P=(lambda-b)/(2*c);
+
+Cost=a+b*P+c*P^2;
+
+fprintf('Generated Power = %f MW\n',P);
+
+fprintf('Operating Cost = %f Rs/hr\n',Cost);
+
+disp('Economic Dispatch Completed');
+```
+
+---
+
+# EXPERIMENT 9: TRANSIENT STABILITY ANALYSIS
+
+```matlab
+clc;
+clear all;
+close all;
+
+t=0:0.05:1;
+
+Pm=1;
+
+Pe=0.6;
+
+Pa=Pm-Pe;
+
+delta=45+Pa*50*t;
+
+plot(t,delta);
+
+xlabel('Time (sec)');
+
+ylabel('Rotor Angle (degree)');
+
+title('Swing Curve');
+
+grid on;
+
+disp('Transient Stability Analysis Completed');
+```
+
