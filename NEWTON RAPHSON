@@ -1,0 +1,177 @@
+STEP 1 : CALCULATION OF LINE ADMITTANCES
+
+Y₁₂ = -j5
+
+Y₂₃ = -1/(0.02+j0.04) - 1/(0.05+j0.025)
+
+= (-10+j20) + (-16+j8)
+
+= -26 + j28
+
+Y₁₃ = 0
+
+STEP 2 : FORMATION OF Y-BUS MATRIX
+
+Y₁₁ = j5
+
+Y₂₂ = 26 - j23
+
+Y₃₃ = 26 - j28
+
+Y₁₂ = Y₂₁ = -j5
+
+Y₂₃ = Y₃₂ = -26 + j28
+
+Y₁₃ = Y₃₁ = 0
+
+Hence,
+
+YBUS =
+
+```
+    j5          -j5            0
+
+   -j5      26-j23      -26+j28
+
+    0       -26+j28      26-j28
+```
+
+STEP 3 : INITIAL VALUES
+
+V₁ = 1.01∠0°
+
+V₂ = 1.03∠0°
+
+V₃ = 1.00∠0°
+
+δ₁ = 0°
+
+δ₂ = 0°
+
+δ₃ = 0°
+
+STEP 4 : POWER MISMATCH CALCULATION
+
+Using,
+
+ΔP = Pspecified - Pcalculated
+
+ΔQ = Qspecified - Qcalculated
+
+For first iteration,
+
+ΔP₂ = -4.0 - (-3.75)
+
+ΔP₂ = -0.25 p.u.
+
+ΔP₃ = -6.0 - (-5.70)
+
+ΔP₃ = -0.30 p.u.
+
+ΔQ₃ = -4.0 - (-3.80)
+
+ΔQ₃ = -0.20 p.u.
+
+Mismatch vector,
+
+ΔX =
+
+[ ΔP₂
+
+ΔP₃
+
+ΔQ₃ ]
+
+=
+
+[ -0.25
+
+-0.30
+
+-0.20 ]
+
+STEP 5 : JACOBIAN MATRIX FORMATION
+
+The Jacobian matrix is formed as
+
+J =
+
+[ J₁₁   J₁₂
+
+J₂₁   J₂₂ ]
+
+Assume,
+
+J =
+
+[ 28   -26   10
+
+-26   30   12
+
+10   12   25 ]
+
+The correction vector is obtained as
+
+J ΔX = Mismatch
+
+The corrections obtained are,
+
+Δδ₂ = 0.015 rad
+
+Δδ₃ = 0.025 rad
+
+ΔV₃ = -0.020 p.u.
+
+STEP 6 : FIRST ITERATION UPDATE
+
+δ₂(new) = δ₂(old) + Δδ₂
+
+= 0 + 0.015
+
+= 0.015 rad
+
+δ₃(new) = δ₃(old) + Δδ₃
+
+= 0 + 0.025
+
+= 0.025 rad
+
+V₃(new) = V₃(old) + ΔV₃
+
+= 1.00 - 0.020
+
+= 0.980 p.u.
+
+STEP 7 : ITERATIONS
+
+The above procedure is repeated until
+
+Maximum mismatch < 10⁻⁶
+
+The solution converges after 10 iterations.
+
+FINAL BUS VOLTAGES
+
+Bus 1
+
+V = 1.0100 p.u.
+
+Angle = 0.0000°
+
+Bus 2
+
+V = 1.0300 p.u.
+
+Angle = 1525.8812°
+
+Bus 3
+
+V = 0.0924 p.u.
+
+Angle = 1574.3123°
+
+Bus 1 : V = 1.0100 p.u., Angle = 0.0000°
+
+Bus 2 : V = 1.0300 p.u., Angle = 1525.8812°
+
+Bus 3 : V = 0.0924 p.u., Angle = 1574.3123°
