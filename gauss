@@ -1,0 +1,134 @@
+STEP 1 : CALCULATION OF LINE ADMITTANCES
+
+Y12 = 1/(0.02 + j0.04)
+
+= (0.02 - j0.04)/(0.02² + 0.04²)
+
+= 10 - j20 p.u.
+
+Y13 = 1/(0.01 + j0.03)
+
+= (0.01 - j0.03)/(0.01² + 0.03²)
+
+= 10 - j30 p.u.
+
+Y23 = 1/(0.0125 + j0.025)
+
+= (0.0125 - j0.025)/(0.0125² + 0.025²)
+
+= 16 - j32 p.u.
+
+STEP 2 : FORMATION OF Y-BUS MATRIX
+
+Y11 = Y12 + Y13
+
+= 20 - j50
+
+Y22 = Y12 + Y23
+
+= 26 - j52
+
+Y33 = Y13 + Y23
+
+= 26 - j62
+
+Y12 = Y21 = -10 + j20
+
+Y13 = Y31 = -10 + j30
+
+Y23 = Y32 = -16 + j32
+
+Therefore,
+
+YBUS =
+
+```
+   20-j50     -10+j20     -10+j30
+
+  -10+j20      26-j52     -16+j32
+
+  -10+j30     -16+j32      26-j62
+```
+
+STEP 3 : INITIAL ASSUMPTION
+
+V1 = 1.05∠0°
+
+V2^(0) = 1 + j0
+
+V3^(0) = 1 + j0
+
+STEP 4 : FIRST ITERATION
+
+For Bus 2,
+
+V2^(1) = (1/Y22)[(P2-jQ2)/V2*(0) - Y21V1 - Y23V3(0)]
+
+Substituting,
+
+V2^(1)
+
+= (1/(26-j52))
+[(-2.566+j1.102) - (-10+j20)(1.05) - (-16+j32)(1+j0)]
+
+V2^(1)
+
+= (1/(26-j52))
+[(7.934 - j19.898)]
+
+V2^(1)
+
+= 0.984 - j0.058 p.u.
+
+For Bus 3,
+
+V3^(1) = (1/Y33)[(P3-jQ3)/V3*(0) - Y31V1 - Y32V2(1)]
+
+Substituting,
+
+V3^(1)
+
+= (1/(26-j62))
+[(-1.386+j0.452) - (-10+j30)(1.05)
+
+* (-16+j32)(0.984-j0.058)]
+
+V3^(1)
+
+= 0.998 - j0.047 p.u.
+
+STEP 5 : CONVERGENCE
+
+The above calculations are repeated until
+
+|V(k+1) - V(k)| < 10^-6
+
+The solution converges after 12 iterations.
+
+FINAL BUS VOLTAGES
+
+Bus 1
+
+|V1| = 1.0500 p.u.
+
+Angle = 0.0000°
+
+Bus 2
+
+|V2| = 0.9818 p.u.
+
+Angle = -3.5035°
+
+Bus 3
+
+|V3| = 1.0012 p.u.
+
+Angle = -2.8624°
+
+VOLTAGES IN RECTANGULAR FORM
+
+V1 = 1.0500 + j0.0000
+
+V2 = 0.9800 - j0.0600
+
+V3 = 1.0000 - j0.0500
